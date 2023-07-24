@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import { getAllUsers } from '../../services/userService';
+import { getAllUsers, createNewUserService, deleteUserService, editUserService } from '../../services/userService';
 import './UserManage.scss';
 import ModalUser from './ModalUser';
+import { emitter } from '../../utils/emitter';
 
 class UserManage extends Component {
     constructor(props) {
@@ -11,12 +12,16 @@ class UserManage extends Component {
         this.state = {
             userData: [],
             isOpen: false,
+            isCreate: false,
+            currentIdEdit: '',
         };
     }
 
-    state = {};
-
     async componentDidMount() {
+        await this.getAllUserFromReact();
+    }
+
+    getAllUserFromReact = async () => {
         let response = await getAllUsers('ALL');
         if (response && response.data.errCode === 0) {
             console.log('get user from nodejs:', response);
@@ -24,16 +29,66 @@ class UserManage extends Component {
                 userData: response.data.user,
             });
         }
-    }
+    };
 
     handleAddNewUser = () => {
         this.setState({
             isOpen: true,
+            isCreate: true,
         });
     };
+
     toggleUser = () => {
         this.setState({
             isOpen: !this.state.isOpen,
+        });
+    };
+    createNewUser = async (data) => {
+        try {
+            let response = await createNewUserService(data);
+            if (response && response.data.errCode !== 0) {
+                alert(response.data.errMessage);
+            } else {
+                await this.getAllUserFromReact();
+                this.toggleUser();
+                emitter.emit('EVENT_CLEAR_MODAL_DATA');
+            }
+            console.log('response', response.data);
+        } catch (e) {}
+        console.log(data);
+    };
+
+    editUser = async (data) => {
+        try {
+            let res = await editUserService(data);
+            if (res && res.data.errCode === 0) {
+                await this.getAllUserFromReact();
+                this.toggleUser();
+                emitter.emit('EVENT_CLEAR_MODAL_DATA');
+            } else {
+                alert(res.data.errMessage);
+            }
+            console.log(res);
+        } catch (e) {}
+    };
+    handleDeleteUser = async (user) => {
+        console.log(user);
+        try {
+            let res = await deleteUserService(user.id);
+            if (res && res.data.errCode === 0) {
+                await this.getAllUserFromReact();
+            } else {
+                alert(res.data.errMessage);
+            }
+            console.log(res);
+        } catch (e) {}
+    };
+    handleEditUser = (user) => {
+        console.log(user);
+        this.setState({
+            isOpen: true,
+            isCreate: false,
+            currentIdEdit: user.id,
         });
     };
     render() {
@@ -41,15 +96,16 @@ class UserManage extends Component {
         return (
             <div className="users-container">
                 <ModalUser
+                    isCreate={this.state.isCreate}
                     isOpen={this.state.isOpen}
                     toggleUser={this.toggleUser}
+                    createNewUser={this.createNewUser}
+                    editUser={this.editUser}
+                    currentIdEdit={this.state.currentIdEdit}
                 />
                 <div className="title text-center">Manage </div>
                 <div className="mx-1">
-                    <button
-                        className="btn btn-primary px-3"
-                        onClick={() => this.handleAddNewUser()}
-                    >
+                    <button className="btn btn-primary px-3" onClick={() => this.handleAddNewUser()}>
                         Add new users
                     </button>
                 </div>
@@ -72,8 +128,8 @@ class UserManage extends Component {
                                             <td>{user.lastName}</td>
                                             <td>{user.address}</td>
                                             <td>
-                                                <button>Edit</button>
-                                                <button>Delete</button>
+                                                <button onClick={() => this.handleEditUser(user)}>Edit</button>
+                                                <button onClick={() => this.handleDeleteUser(user)}>Delete</button>
                                             </td>
                                         </tr>
                                     );
