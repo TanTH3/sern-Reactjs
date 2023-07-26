@@ -1,5 +1,3 @@
-import { types } from 'node-sass';
-import { languages } from '../../utils';
 import actionTypes from './actionTypes';
 
 export const appStartUpComplete = () => ({
