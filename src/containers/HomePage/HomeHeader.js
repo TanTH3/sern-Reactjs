@@ -6,7 +6,7 @@ import { LANGUAGES } from '../../utils';
 import { changeLanguageApp } from '../../store/actions';
 
 class HomeHeader extends Component {
-    handleChangLanguage = (language) => {
+    handleChangeLanguage = (language) => {
         this.props.changeLanguageAppRedux(language);
     };
     render() {
@@ -67,11 +67,23 @@ class HomeHeader extends Component {
                                 <i className="fas fa-question-circle"></i>
                                 <FormattedMessage id="home-header.support" />
                             </div>
-                            <div className={language === LANGUAGES.VI ? 'language-vi active' : 'language-vi'}>
-                                <span onClick={() => this.handleChangLanguage(LANGUAGES.VI)}>VI</span>
+                            <div
+                                className={
+                                    language === LANGUAGES.VI ? 'language-vi active' : 'language-vi'
+                                }
+                            >
+                                <span onClick={() => this.handleChangeLanguage(LANGUAGES.VI)}>
+                                    VI
+                                </span>
                             </div>
-                            <div className={language === LANGUAGES.EN ? 'language-en active' : 'language-en'}>
-                                <span onClick={() => this.handleChangLanguage(LANGUAGES.EN)}>En</span>
+                            <div
+                                className={
+                                    language === LANGUAGES.EN ? 'language-en active' : 'language-en'
+                                }
+                            >
+                                <span onClick={() => this.handleChangeLanguage(LANGUAGES.EN)}>
+                                    En
+                                </span>
                             </div>
                         </div>
                     </div>

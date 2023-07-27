@@ -53,6 +53,7 @@
             "system-administrator": {
                 "header": "Quản trị hệ thống",
                 "user-manage": "Quản lý người sử dụng",
+                "user-redux": "Quản lí user red ux",
                 "product-manage": "Quản lý gói",
                 "register-package-group-or-account": "Đăng ký gói dịch vụ cho nhóm/tài khoản"
             },
