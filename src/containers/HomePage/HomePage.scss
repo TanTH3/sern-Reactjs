@@ -78,7 +78,8 @@
     height: 330px;
 
     .section-container {
-        margin: 0 100px;
+        max-width: 1200px;
+        margin: auto;
         display: flex;
         flex-direction: column;
 
@@ -122,6 +123,7 @@
         padding: 5px;
 
         .customize-border {
+            background-color: white;
             padding: 20px;
         }
     }

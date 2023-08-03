@@ -6,7 +6,7 @@ import Slider from 'react-slick';
 class MedicalFacility extends Component {
     render() {
         return (
-            <div className="section-share section-handbook">
+            <div className="section-share section-medical-facility ">
                 <div className="section-container">
                     <div className="section-header">
                         <span className="title-section">Co so y te noi bat</span>

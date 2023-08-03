@@ -40,7 +40,8 @@ class Login extends Component {
                 });
             }
             if (data && data.data.errCode === 0) {
-                this.props.userLoginSuccess(data.user);
+                this.props.userLoginSuccessRedux(data.data.user);
+                console.log(data.data.user);
             }
         } catch (e) {
             if (e.response) {
@@ -83,7 +84,10 @@ class Login extends Component {
                                     placeholder="Enter your password"
                                     onChange={(e) => this.handleOnchangePassword(e)}
                                 />
-                                <div className="show-hide-pass" onClick={() => this.handleShowHidePassword()}>
+                                <div
+                                    className="show-hide-pass"
+                                    onClick={() => this.handleShowHidePassword()}
+                                >
                                     {this.state.isShowPassword ? (
                                         <i className="far fa-eye-slash"></i>
                                     ) : (
@@ -132,7 +136,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         navigate: (path) => dispatch(push(path)),
         // userLoginFail: () => dispatch(actions.adminLoginFail()),
-        userLoginSuccess: (userInfo) => dispatch(actions.userLoginSuccess(userInfo)),
+        userLoginSuccessRedux: (userInfo) => dispatch(actions.userLoginSuccess(userInfo)),
     };
 };
 

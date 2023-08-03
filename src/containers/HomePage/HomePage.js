@@ -17,7 +17,7 @@ class HomePage extends Component {
         let settings = {
             dots: false,
             infinite: true,
-            autoplay: true,
+            autoplay: false,
             speed: 500,
             slidesToShow: 4,
             slidesToScroll: 1,
@@ -40,6 +40,7 @@ class HomePage extends Component {
 const mapStateToProps = (state) => {
     return {
         isLoggedIn: state.user.isLoggedIn,
+        userInfo: state.user.userInfo,
     };
 };
 

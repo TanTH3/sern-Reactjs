@@ -6,4 +6,9 @@ const instance = axios.create({
     // withCredentials: true,
 });
 
+// instance.interceptors.response.use((response) => {
+//     const { data } = response;
+//     return response.data;
+// });
+
 export default instance;
