@@ -36,5 +36,24 @@
             "handbook": "Cẩm nang",
             "manage-handbook": "Quản lí cẩm nang"
         }
+    },
+    "manage-user": {
+        "add": "Thêm người dùng",
+        "email": "Email",
+        "password": "Password",
+        "first-name": "Họ",
+        "last-name": "Tên",
+        "phone-number": "Số điện thoại",
+        "address": "Địa chỉ",
+        "gender": "Giới tính",
+        "position": "Chức danh",
+        "role": "Vai trò",
+        "image": "Ảnh đại diện",
+        "save": "Lưu",
+        "edit": "Lưu thay đổi"
+    },
+    "homepage": {
+        "outstanding-doctor": "Bác sĩ nổi bật trong tuần",
+        "more-infor": "xem thêm"
     }
 }

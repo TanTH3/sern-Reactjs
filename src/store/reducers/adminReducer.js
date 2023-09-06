@@ -5,9 +5,13 @@ const initialState = {
     genders: [],
     roles: [],
     positions: [],
+    users: [],
+    topDoctors: [],
+    allDoctors: [],
 };
 
 const adminReducer = (state = initialState, action) => {
+    console.log(action);
     switch (action.type) {
         case actionTypes.FETCH_GENDER_START:
             let copyState = { ...state };
@@ -19,7 +23,7 @@ const adminReducer = (state = initialState, action) => {
             state.genders = action.data;
             state.isLoadingGender = false;
             return {
-                ...copyState,
+                ...state,
             };
         case actionTypes.FETCH_GENDER_FAILED:
             state.isLoadingGender = false;
@@ -44,6 +48,36 @@ const adminReducer = (state = initialState, action) => {
             };
         case actionTypes.FETCH_ROLE_FAILED:
             state.roles = [];
+            return {
+                ...state,
+            };
+        case actionTypes.FETCH_ALL_USER_SUCCESS:
+            state.users = action.data;
+            return {
+                ...state,
+            };
+        case actionTypes.FETCH_ALL_USER_FAILED:
+            state.users = [];
+            return {
+                ...state,
+            };
+        case actionTypes.FETCH_TOP_DOCTORS_SUCCESS:
+            state.topDoctors = action.dataDoctors;
+            return {
+                ...state,
+            };
+        case actionTypes.FETCH_TOP_DOCTORS_FAILED:
+            state.topDoctors = [];
+            return {
+                ...state,
+            };
+        case actionTypes.FETCH_ALL_DOCTORS_SUCCESS:
+            state.allDoctors = action.dataDr;
+            return {
+                ...state,
+            };
+        case actionTypes.FETCH_ALL_DOCTORS_FAILED:
+            state.allDoctors = [];
             return {
                 ...state,
             };

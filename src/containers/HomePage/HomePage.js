@@ -16,12 +16,10 @@ class HomePage extends Component {
     render() {
         let settings = {
             dots: false,
-            infinite: true,
-            autoplay: false,
+            infinite: false,
             speed: 500,
             slidesToShow: 4,
             slidesToScroll: 1,
-            autoplaySpeed: 5000,
         };
         return (
             <div className="homepage-container">
