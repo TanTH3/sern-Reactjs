@@ -7,6 +7,8 @@ import {
     editUserService,
     getTopDoctorHomeService,
     getAllDoctorsService,
+    saveDetailDoctorService,
+    getDetailDoctorByIdService,
 } from '../../services/userService';
 import { toast } from 'react-toastify';
 
@@ -236,6 +238,82 @@ export const fetchAllDoctors = () => {
             console.log(e);
             dispatch({
                 type: actionTypes.FETCH_ALL_DOCTORS_FAILED,
+            });
+        }
+    };
+};
+
+export const saveDetailDoctor = (data) => {
+    console.log(data);
+    return async (dispatch, getState) => {
+        try {
+            let res = await saveDetailDoctorService(data);
+            console.log(res);
+            if (res && res.data.errCode === 0) {
+                toast.success('Save succeed!');
+                dispatch({
+                    type: actionTypes.SAVE_DETAIL_DOCTOR_SUCCESS,
+                });
+            } else {
+                toast.error('Save error');
+                dispatch({
+                    type: actionTypes.SAVE_DETAIL_DOCTOR_FAILED,
+                });
+            }
+        } catch (e) {
+            console.log(e);
+            toast.error('Save error');
+            dispatch({
+                type: actionTypes.SAVE_DETAIL_DOCTOR_FAILED,
+            });
+        }
+    };
+};
+
+export const getDetailDoctorById = (Id) => {
+    console.log(Id);
+    return async (dispatch, getState) => {
+        try {
+            let res = await getDetailDoctorByIdService(Id);
+            console.log(res);
+            if (res && res.data.errCode === 0) {
+                dispatch({
+                    type: actionTypes.GET_DETAIL_DOCTOR_BY_ID_SUCCESS,
+                    dataDrCurrent: res.data.data,
+                });
+            } else {
+                dispatch({
+                    type: actionTypes.GET_DETAIL_DOCTOR_BY_ID_FAILED,
+                });
+            }
+        } catch (e) {
+            console.log(e);
+            dispatch({
+                type: actionTypes.GET_DETAIL_DOCTOR_BY_ID_FAILED,
+            });
+        }
+    };
+};
+
+export const fetchAllScheduleTime = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllCodeService('TIME');
+            console.log(res);
+            if (res && res.data.errCode === 0) {
+                dispatch({
+                    type: actionTypes.FETCH_ALL_CODE_SCHEDULE_TIME_SUCCESS,
+                    dataTime: res.data.data,
+                });
+            } else {
+                dispatch({
+                    type: actionTypes.FETCH_ALL_CODE_SCHEDULE_TIME_FAILED,
+                });
+            }
+        } catch (e) {
+            console.log(e);
+            dispatch({
+                type: actionTypes.FETCH_ALL_CODE_SCHEDULE_TIME_FAILED,
             });
         }
     };

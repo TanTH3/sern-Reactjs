@@ -1,11 +1,11 @@
 .home-header-container {
-    height: 60px;
+    height: 80px;
     width: 100%;
     padding: 0 20px;
     background-color: white;
-    z-index: 1242;
     position: fixed;
-    margin-top: -60px;
+    top: 0;
+    left: 0;
 
     .home-header-content {
         width: 100%;
@@ -22,6 +22,7 @@
 
             .header-logo {
                 margin-left: 10px;
+                cursor: pointer;
                 width: 175px;
                 height: 40px;
                 background: url('../../assets/images/logo.svg') center center no-repeat;
@@ -74,7 +75,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    margin-top: 60px;
+    margin-top: 80px;
     height: 820px;
 
     .content-up {
@@ -119,7 +120,11 @@
         }
     }
     .content-down {
-        background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 1));
+        background-image: linear-gradient(
+            rgba(255, 255, 255, 0.1),
+            rgba(255, 255, 255, 0.9),
+            rgba(255, 255, 255, 1)
+        );
         height: 38%;
         padding-bottom: 35px;
         .option {

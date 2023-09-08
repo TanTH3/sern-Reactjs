@@ -35,6 +35,9 @@
             "manage-specialty": "Quản lí chuyên khoa",
             "handbook": "Cẩm nang",
             "manage-handbook": "Quản lí cẩm nang"
+        },
+        "doctor": {
+            "manage-schedule": "Quản lí lịch khám bệnh"
         }
     },
     "manage-user": {
@@ -55,5 +58,11 @@
     "homepage": {
         "outstanding-doctor": "Bác sĩ nổi bật trong tuần",
         "more-infor": "xem thêm"
+    },
+    "manage-schedule": {
+        "title": "Quản lí lịch khám bệnh của bác sĩ",
+        "choose-doctor": "Chọn bác sĩ",
+        "choose-date": "Chọn ngày",
+        "save": "Lưu thông tin"
     }
 }

@@ -7,6 +7,7 @@
         text-transform: uppercase;
         font-weight: 600;
     }
+    .create-content-doctor,
     .save-content-doctor {
         margin-top: 20px;
         margin-bottom: 30px;
@@ -14,12 +15,18 @@
         outline: none;
         border: none;
         padding: 5px;
-        background: orange;
         cursor: pointer;
 
         &:hover {
             opacity: 0.9;
         }
+    }
+    .save-content-doctor {
+        background: orange;
+    }
+    .create-content-doctor {
+        background: rgb(11, 93, 216);
+        color: white;
     }
     .more-info {
         display: flex;
