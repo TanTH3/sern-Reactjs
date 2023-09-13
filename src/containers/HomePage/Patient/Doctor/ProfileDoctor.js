@@ -5,17 +5,22 @@ import './ProfileDoctor.scss';
 import { getDetailDoctorByIdService } from '../../../../services/userService';
 import { FormattedMessage } from 'react-intl';
 import { LANGUAGES } from '../../../../utils';
+import DoctorSchedule from './DoctorSchedule';
 class ProfileDoctor extends Component {
     constructor(props) {
         super(props);
         this.state = {
             detailDoctor: {},
+            currentDoctorId: -1,
         };
     }
 
     async componentDidMount() {
         if (this.props.match && this.props.match.params && this.props.match.params.id) {
             let id = this.props.match.params.id;
+            this.setState({
+                currentDoctorId: id,
+            });
             let res = await getDetailDoctorByIdService(id);
             console.log(res);
             if (res && res.data.errCode === 0) {
@@ -62,7 +67,12 @@ class ProfileDoctor extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="schedule-doctor"></div>
+                    <div className="schedule-doctor">
+                        <div className="content-left">
+                            <DoctorSchedule doctorIdFromParent={this.state.currentDoctorId} />
+                        </div>
+                        <div className="content-right"></div>
+                    </div>
                     <div className="detail-info-doctor">
                         {detailDoctor &&
                             detailDoctor.Markdown &&
