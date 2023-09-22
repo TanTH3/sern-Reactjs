@@ -71,6 +71,27 @@
             "no-schedule": "The doctor dosen't have an appointment",
             "choose": "Choose",
             "book-free": "and book (free)"
+        },
+        "extra-info-doctor": {
+            "text-address": "Address of examination",
+            "price": "Examination price",
+            "detail": "See detail",
+            "payment": "The patient can pay the cost in the form of:",
+            "hide-price": "Hide price list"
+        },
+        "booking-modal": {
+            "title": "Infomation to book a medical appointment",
+            "fullName": "FullName",
+            "phoneNumber": "Phone Number",
+            "email": "Email",
+            "address": "Address",
+            "reason": "Reason for medical examination",
+            "birthday": "Date of birth",
+            "gender": "Gender",
+            "btnConfirm": "Confirm",
+            "btnCancel": "Cancel",
+            "priceBooking": "Free booking",
+            "price": "Price: "
         }
     },
     "admin": {

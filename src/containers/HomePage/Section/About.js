@@ -12,11 +12,11 @@ class About extends Component {
                         <iframe
                             width="100%"
                             height="400px"
-                            src="https://www.youtube.com/embed/KolnDhJVKck"
-                            title="LẤY CHỒNG SỚM LÀM GÌ 1HOUR | HƯƠNG TÚ COVER"
-                            frameBorder="0"
+                            src="https://www.youtube.com/embed/cupV7zcVWS8?si=L8vZEh2FMiIV9iTc"
+                            title="YouTube video player"
+                            frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowFullScreen
+                            allowfullscreen
                         ></iframe>
                     </div>
                     <div className="content-right">

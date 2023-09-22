@@ -6,6 +6,8 @@ import { getDetailDoctorByIdService } from '../../../../services/userService';
 import { FormattedMessage } from 'react-intl';
 import { LANGUAGES } from '../../../../utils';
 import DoctorSchedule from './DoctorSchedule';
+import DoctorExtraInfo from './DoctorExtraInfo';
+
 class ProfileDoctor extends Component {
     constructor(props) {
         super(props);
@@ -71,7 +73,9 @@ class ProfileDoctor extends Component {
                         <div className="content-left">
                             <DoctorSchedule doctorIdFromParent={this.state.currentDoctorId} />
                         </div>
-                        <div className="content-right"></div>
+                        <div className="content-right">
+                            <DoctorExtraInfo doctorIdFromParent={this.state.currentDoctorId} />
+                        </div>
                     </div>
                     <div className="detail-info-doctor">
                         {detailDoctor &&
