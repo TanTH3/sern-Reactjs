@@ -57,7 +57,8 @@
     },
     "homepage": {
         "outstanding-doctor": "Bác sĩ nổi bật trong tuần",
-        "more-infor": "xem thêm"
+        "more-info": "xem thêm",
+        "specialty-popular": "Chuyên khoa phổ biến"
     },
     "manage-schedule": {
         "title": "Quản lí lịch khám bệnh của bác sĩ",
@@ -106,7 +107,9 @@
             "province": "Tỉnh thành",
             "nameClinic": "Tên phòng khám",
             "addressClinic": "Địa chỉ phòng khám",
-            "note": "Ghi chú"
+            "note": "Ghi chú",
+            "specialty": "Chọn chuyên khoa",
+            "select-clinic": "Chọn phòng khám"
         }
     }
 }

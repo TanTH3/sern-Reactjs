@@ -10,6 +10,7 @@ import MdEditor from 'react-markdown-editor-lite';
 import { CommonUtils } from '../../../utils';
 import { createNewSpecialty } from '../../../services/userService';
 import { toast } from 'react-toastify';
+import { throttle } from 'lodash';
 
 const mdParser = new MarkdownIt(/* Markdown-it option*/);
 
@@ -47,12 +48,12 @@ class ManageSpecialty extends Component {
     };
 
     handleOnchangeImage = async (e) => {
-        let data = e.target.value;
+        let data = e.target.files;
         let file = data[0];
         if (file) {
-            let imageBase64 = await CommonUtils.getBase64(file);
+            let base64 = await CommonUtils.getBase64(file);
             this.setState({
-                imageBase64,
+                imageBase64: base64,
             });
         }
     };
@@ -61,6 +62,12 @@ class ManageSpecialty extends Component {
         let res = await createNewSpecialty(this.state);
         if (res && res.data.errCode === 0) {
             toast.success('Add new specialty succeed');
+            this.setState({
+                name: '',
+                imageBase64: '',
+                descriptionHTML: '',
+                descriptionMarkdown: '',
+            });
         } else {
             toast.error('Add new specialty error');
             console.log(res);
