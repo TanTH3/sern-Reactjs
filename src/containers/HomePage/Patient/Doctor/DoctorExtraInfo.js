@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import HomeHeader from '../../../HomePage/HomeHeader';
-import moment from 'moment';
-import localization from 'moment/locale/vi';
 import './DoctorExtraInfo.scss';
 import { getExtraInfoDoctorByIdService } from '../../../../services/userService';
 import { FormattedMessage } from 'react-intl';
@@ -31,9 +28,7 @@ class DoctorExtraInfo extends Component {
 
     async componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.props.doctorIdFromParent !== prevProps.doctorIdFromParent) {
-            console.log(this.props.doctorIdFromParent);
             let res = await getExtraInfoDoctorByIdService(this.props.doctorIdFromParent);
-            console.log(res);
             if (res && res.data.errCode === 0) {
                 this.setState({
                     extraInfo: res.data.data,
@@ -96,9 +91,6 @@ class DoctorExtraInfo extends Component {
                     )}
                     {isShowDetail === true && (
                         <>
-                            <div className="title-price">
-                                <FormattedMessage id="patient.extra-info-doctor.price" />
-                            </div>
                             <div className="detail-info">
                                 <div className="price">
                                     <span className="left">

@@ -14,7 +14,6 @@ const initialState = {
 };
 
 const adminReducer = (state = initialState, action) => {
-    console.log(action);
     switch (action.type) {
         case actionTypes.FETCH_GENDER_START:
             let copyState = { ...state };

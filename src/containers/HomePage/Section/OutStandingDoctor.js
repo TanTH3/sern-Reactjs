@@ -5,6 +5,7 @@ import Slider from 'react-slick';
 import * as actions from '../../../store/actions';
 import { LANGUAGES } from '../../../utils';
 import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
 
 class OutStandingDoctor extends Component {
     constructor(props) {
@@ -19,7 +20,6 @@ class OutStandingDoctor extends Component {
                 arrDoctors: this.props.topDoctorsRedux,
             });
         }
-        console.log(this.props.topDoctorsRedux);
     }
 
     componentDidMount() {
@@ -27,13 +27,13 @@ class OutStandingDoctor extends Component {
     }
 
     handleViewDetailDoctor = (doctor) => {
-        console.log(doctor);
         if (this.props.history) {
             this.props.history.push(`/profile-doctor/${doctor.id}`);
         }
     };
     render() {
         let arrDoctors = this.state.arrDoctors;
+        console.log(arrDoctors);
         let { language } = this.props;
         return (
             <div className="section-share section-outstanding-doctor">
@@ -42,9 +42,9 @@ class OutStandingDoctor extends Component {
                         <span className="title-section">
                             <FormattedMessage id="homepage.outstanding-doctor" />
                         </span>
-                        <button className="btn-section">
+                        <Link className="btn-section" to="/all-doctor">
                             <FormattedMessage id="homepage.more-info" />
-                        </button>
+                        </Link>
                     </div>
                     <div className="section-body">
                         <Slider {...this.props.settings}>
@@ -57,8 +57,8 @@ class OutStandingDoctor extends Component {
                                             'binary',
                                         );
                                     }
-                                    let nameVi = `${item.positionData.valueVi}, ${item.lastName} ${item.firstName}`;
-                                    let nameEn = `${item.positionData.valueEn}, ${item.firstName} ${item.lastName}`;
+                                    let nameVi = `${item.positionData.valueVi} ${item.lastName} ${item.firstName}`;
+                                    let nameEn = `${item.positionData.valueEn} ${item.firstName} ${item.lastName}`;
                                     return (
                                         <div
                                             className="section-customize"
@@ -74,12 +74,14 @@ class OutStandingDoctor extends Component {
                                                         }}
                                                     />
                                                     <div className="position text-center">
-                                                        <div>
+                                                        <div className="name-doctor">
                                                             {language === LANGUAGES.VI
                                                                 ? nameVi
                                                                 : nameEn}
                                                         </div>
-                                                        <div>Cơ xương khớp </div>
+                                                        <div className="specialty">
+                                                            {item.Doctor_Info.Specialty.name}
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

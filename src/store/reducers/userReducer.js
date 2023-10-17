@@ -6,7 +6,6 @@ const initialState = {
 };
 
 const userReducer = (state = initialState, action) => {
-    console.log(action);
     switch (action.type) {
         case actionTypes.USER_LOGIN_SUCCESS:
             return {

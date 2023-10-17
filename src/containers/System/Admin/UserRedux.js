@@ -41,10 +41,8 @@ class UserRedux extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log(prevProps, this.props.genderRedux);
         if (prevProps.genderRedux !== this.props.genderRedux) {
             let arrGenders = this.props.genderRedux;
-            console.log(arrGenders);
             this.setState({
                 genderArr: arrGenders,
                 gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].keyMap : '',
@@ -71,7 +69,6 @@ class UserRedux extends Component {
             let arrGenders = this.props.genderRedux;
             let arrRoles = this.props.roleRedux;
             let arrPositions = this.props.positionRedux;
-            console.log(arrGenders, arrRoles, arrPositions);
             this.setState({
                 email: '',
                 password: '',
@@ -161,12 +158,9 @@ class UserRedux extends Component {
     onChangeInput = (e, id) => {
         let copyState = { ...this.state };
         copyState[id] = e.target.value;
-        this.setState(
-            {
-                ...copyState,
-            },
-            console.log(this.state),
-        );
+        this.setState({
+            ...copyState,
+        });
     };
 
     handleEditUserFromParent = (user) => {
@@ -191,8 +185,6 @@ class UserRedux extends Component {
         });
     };
     render() {
-        console.log(this.state);
-
         let genders = this.state.genderArr;
         let roles = this.state.roleArr;
         let positions = this.state.positionArr;

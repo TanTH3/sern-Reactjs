@@ -8,7 +8,7 @@ import './Header.scss';
 import { LANGUAGES, USER_ROLE } from '../../utils';
 import { changeLanguageApp } from '../../store/actions';
 import { FormattedMessage } from 'react-intl';
-import _, { isEmpty } from 'lodash';
+import _ from 'lodash';
 
 class Header extends Component {
     constructor(props) {
@@ -41,7 +41,6 @@ class Header extends Component {
     }
 
     render() {
-        console.log(this.state.menuApp, this.props.userInfo);
         const { processLogout, language, userInfo } = this.props;
         return (
             <div className="header-container">

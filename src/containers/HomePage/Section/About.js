@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { FormattedMessage } from 'react-intl';
 
 class About extends Component {
     render() {
         return (
             <div className="section-share section-about">
-                <div className="section-about-header">Truyen thong noi gi</div>
+                <div className="section-about-header">Truyền thông nói gì</div>
                 <div className="section-about-content">
                     <div className="content-left">
                         <iframe
                             width="100%"
                             height="400px"
-                            src="https://www.youtube.com/embed/cupV7zcVWS8?si=L8vZEh2FMiIV9iTc"
+                            src="https://www.youtube.com/embed/FyDQljKtWnI?si=mwExZCIQ5oGt2ez7"
                             title="YouTube video player"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -20,11 +19,32 @@ class About extends Component {
                         ></iframe>
                     </div>
                     <div className="content-right">
-                        Ngày nay có rất nhiều vấn đề sức khỏe tâm thần của trẻ em được quan tâm, một
-                        trong số đó không thể không nhắc đến , hay gọi chính xác là rối loạn phổ tự
-                        kỷ, vốn là một rối loạn tâm sinh lý gây ra khiếm khuyết trong phát triển về
-                        khả năng hành vi và hòa nhập xã hội, khiến trẻ mất nhiều cơ hội học tập và
-                        kết bạn, từ đó giảm khả năng tư duy, học hỏi.
+                        <div>
+                            BookingCare là Nền tảng Y tế chăm sóc sức khỏe toàn diện cung cấp nền
+                            tảng công nghệ giúp bệnh nhân dễ dàng lựa chọn dịch vụ y tế từ mạng lưới
+                            bác sĩ chuyên khoa giỏi, phòng khám/ bệnh viện uy tín với thông tin đã
+                            xác thực và đặt lịch nhanh chóng.
+                        </div>
+                        <div>
+                            <span>
+                                Chúng tôi hiểu rằng, người bệnh xứng đáng được lựa chọn dịch vụ y tế
+                                chất lượng cao, như là:
+                            </span>
+                            <ul>
+                                <li>Đi khám đúng bác sĩ với vấn đề của mình</li>
+                                <li>Khám với bác sĩ chuyên khoa giỏi</li>
+                                <li>
+                                    Thông tin bác sĩ đã được xác thực rõ ràng từ chuyên khoa, quá
+                                    trình đào tạo, kinh nghiệm công tác
+                                </li>
+                                <li>
+                                    Cơ sở y tế tiện nghi, giá cả dịch vụ hợp lý, công khai minh bạch
+                                </li>
+                                <li>Trang thiết bị y tế hiện đại, hỗ trợ chẩn đoán chính xác</li>
+                                <li>Giảm thiểu thời gian chờ đợi, xếp hàng</li>
+                                <li>Đặt lịch khám đơn giản, bất kỳ lúc nào, ở đâu.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>

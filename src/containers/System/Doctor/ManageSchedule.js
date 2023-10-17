@@ -121,7 +121,6 @@ class ManageSchedule extends Component {
         } else {
             toast.error('fail save info succeed');
         }
-        console.log(result, res);
     };
     render() {
         let { rangeTime } = this.state;

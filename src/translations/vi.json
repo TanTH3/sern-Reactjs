@@ -37,7 +37,8 @@
             "manage-handbook": "Quản lí cẩm nang"
         },
         "doctor": {
-            "manage-schedule": "Quản lí lịch khám bệnh"
+            "manage-schedule": "Quản lí lịch khám bệnh",
+            "manage-patient": "Quản lí bệnh nhân khám bệnh"
         }
     },
     "manage-user": {
@@ -58,7 +59,8 @@
     "homepage": {
         "outstanding-doctor": "Bác sĩ nổi bật trong tuần",
         "more-info": "xem thêm",
-        "specialty-popular": "Chuyên khoa phổ biến"
+        "specialty-popular": "Chuyên khoa phổ biến",
+        "clinic": "Cơ sở y tế nổi bật"
     },
     "manage-schedule": {
         "title": "Quản lí lịch khám bệnh của bác sĩ",

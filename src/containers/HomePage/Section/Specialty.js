@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import './Specialty.scss';
 import { FormattedMessage } from 'react-intl';
 import Slider from 'react-slick';
 import { getAllSpecialty } from '../../../services/userService';
 import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
 
 class Specialty extends Component {
     constructor(props) {
@@ -43,9 +43,9 @@ class Specialty extends Component {
                         <span className="title-section">
                             <FormattedMessage id="homepage.specialty-popular" />
                         </span>
-                        <button className="btn-section">
+                        <Link className="btn-section" to="/all-specialty">
                             <FormattedMessage id="homepage.more-info" />
-                        </button>
+                        </Link>
                     </div>
                     <div className="section-body">
                         <Slider {...this.props.settings}>

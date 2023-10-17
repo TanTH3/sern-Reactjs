@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import HomeHeader from '../../../HomePage/HomeHeader';
 import './ProfileDoctor.scss';
 import { getDetailDoctorByIdService } from '../../../../services/userService';
-import { FormattedMessage } from 'react-intl';
 import { LANGUAGES } from '../../../../utils';
 import DoctorSchedule from './DoctorSchedule';
 import DoctorExtraInfo from './DoctorExtraInfo';
@@ -24,7 +23,6 @@ class ProfileDoctor extends Component {
                 currentDoctorId: id,
             });
             let res = await getDetailDoctorByIdService(id);
-            console.log(res);
             if (res && res.data.errCode === 0) {
                 this.setState({
                     detailDoctor: res.data.data,
@@ -36,7 +34,6 @@ class ProfileDoctor extends Component {
     componentDidUpdate(prevProps, prevState, snapshot) {}
 
     render() {
-        console.log(this.state);
         let { language } = this.props;
         let { detailDoctor } = this.state;
         let nameVi = '',

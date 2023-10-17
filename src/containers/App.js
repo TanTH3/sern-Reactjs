@@ -14,11 +14,14 @@ import Login from './Auth/Login';
 import System from '../routes/System';
 import HomePage from './HomePage/HomePage.js';
 import ProfileDoctor from './HomePage/Patient/Doctor/ProfileDoctor';
-import { CustomToastCloseButton } from '../components/CustomToast';
 import CustomScrollbars from '../components/CustomScrollbars';
 import Doctor from '../routes/Doctor';
 import VerifyEmail from './HomePage/Patient/verifyEmail';
 import DetailSpecialty from './HomePage/Patient/Specialty/DetailSpecialty';
+import DetailClinic from './HomePage/Patient/Clinic/DetailClinic';
+import AllDoctor from './HomePage/Patient/Doctor/AllDoctor';
+import AllClinic from './HomePage/Patient/Clinic/AllClinic';
+import AllSpecialty from './HomePage/Patient/Specialty/AllSpecialty';
 
 class App extends Component {
     handlePersistorState = () => {
@@ -67,6 +70,10 @@ class App extends Component {
                                         path={path.DETAIL_SPECIALTY}
                                         component={DetailSpecialty}
                                     />
+                                    <Route path={path.DETAIL_CLINIC} component={DetailClinic} />
+                                    <Route path={path.ALL_DOCTOR} component={AllDoctor} />
+                                    <Route path={path.ALL_CLINIC} component={AllClinic} />
+                                    <Route path={path.ALL_SPECIALTY} component={AllSpecialty} />
                                     <Route
                                         path={path.VERIFY_EMAIL_BOOKING}
                                         component={VerifyEmail}

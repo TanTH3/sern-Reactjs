@@ -7,7 +7,11 @@ export const path = {
     DOCTOR: '/doctor',
     PROFILE_DOCTOR: '/profile-doctor/:id',
     DETAIL_SPECIALTY: '/detail-specialty/:id',
+    DETAIL_CLINIC: '/detail-clinic/:id',
     VERIFY_EMAIL_BOOKING: '/verify-booking',
+    ALL_DOCTOR: '/all-doctor',
+    ALL_SPECIALTY: '/all-specialty',
+    ALL_CLINIC: '/all-clinic',
 };
 
 export const LANGUAGES = {

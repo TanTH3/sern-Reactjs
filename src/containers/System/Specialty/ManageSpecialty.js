@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import moment from 'moment';
-import localization from 'moment/locale/vi';
 import { FormattedMessage } from 'react-intl';
-import NumberFormat from 'react-number-format';
 import './ManageSpecialty.scss';
 import MarkdownIt from 'markdown-it';
 import MdEditor from 'react-markdown-editor-lite';
 import { CommonUtils } from '../../../utils';
 import { createNewSpecialty } from '../../../services/userService';
 import { toast } from 'react-toastify';
-import { throttle } from 'lodash';
 
 const mdParser = new MarkdownIt(/* Markdown-it option*/);
 
@@ -70,7 +66,6 @@ class ManageSpecialty extends Component {
             });
         } else {
             toast.error('Add new specialty error');
-            console.log(res);
         }
     };
 

@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import moment from 'moment';
-import localization from 'moment/locale/vi';
-import { FormattedMessage } from 'react-intl';
-import NumberFormat from 'react-number-format';
+
 import './verifyEmail.scss';
 import HomeHeader from '../HomeHeader';
 import { postVerifyBookAppointment } from '../../../services/userService';
-import { flatMap } from 'lodash';
 
 class verifyEmail extends Component {
     constructor(props) {

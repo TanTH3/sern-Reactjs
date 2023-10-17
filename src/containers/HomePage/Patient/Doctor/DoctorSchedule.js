@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import HomeHeader from '../../../HomePage/HomeHeader';
 import moment from 'moment';
-import localization from 'moment/locale/vi';
 import './DoctorSchedule.scss';
 import { getScheduleDoctorByDate } from '../../../../services/userService';
 import { FormattedMessage } from 'react-intl';
 import { LANGUAGES } from '../../../../utils';
 import BookingModal from './Modal/BookingModal';
+import { isEqual, range } from 'lodash';
+import * as actions from '../../../../store/actions';
 
 class DoctorSchedule extends Component {
     constructor(props) {
@@ -17,15 +17,42 @@ class DoctorSchedule extends Component {
             allAvailableTime: [],
             isOpenModal: false,
             dataScheduleTimeModal: {},
+            rangeTime: [],
+            time: '',
         };
     }
 
     async componentDidMount() {
+        await this.props.fetchAllScheduleTime();
         let { language } = this.props;
         let allDays = this.getArrDays(language);
+        let data = this.props.allScheduleTime;
+
+        if (this.props.doctorIdFromParent) {
+            let res = await getScheduleDoctorByDate(
+                this.props.doctorIdFromParent,
+                allDays[0].value,
+            );
+            this.setState({
+                allAvailableTime: res.data.data ? res.data.data : [],
+            });
+        }
         this.setState({
             allDays,
         });
+
+        if (data && data.length > 0) {
+            data = data.map((item) => ({
+                ...item,
+                isSelected: false,
+                doctorId: this.props.doctorIdFromParent,
+                date: allDays[0].value,
+            }));
+        }
+        this.setState({
+            rangeTime: data,
+        });
+        this.handleCheckAvailableDay();
     }
 
     capitalizeFirstLetter(string) {
@@ -42,7 +69,7 @@ class DoctorSchedule extends Component {
                     let today = `Hôm nay - ${ddMM}`;
                     object.label = today;
                 } else {
-                    let labelVi = moment(new Date()).add(i, 'days').format('dddd - DD/YY');
+                    let labelVi = moment(new Date()).add(i, 'days').format('dddd - DD/MM');
                     object.label = this.capitalizeFirstLetter(labelVi);
                 }
             } else {
@@ -54,11 +81,10 @@ class DoctorSchedule extends Component {
                     object.label = moment(new Date())
                         .add(i, 'days')
                         .locale('en')
-                        .format('ddd - DD/YY');
+                        .format('ddd - DD/MM');
                 }
             }
             object.value = moment(new Date()).add(i, 'days').startOf('day').valueOf('day');
-            console.log(object);
             allDays.push(object);
         }
         return allDays;
@@ -81,6 +107,22 @@ class DoctorSchedule extends Component {
                 allAvailableTime: res.data.data ? res.data.data : [],
             });
         }
+        if (prevProps.allScheduleTime !== this.props.allScheduleTime) {
+            let data = this.props.allScheduleTime;
+            let allDays = this.getArrDays(this.props.language);
+
+            if (data && data.length > 0) {
+                data = data.map((item) => ({
+                    ...item,
+                    isSelected: false,
+                    doctorId: this.props.doctorIdFromParent,
+                    date: allDays[0].value,
+                }));
+            }
+            this.setState({
+                rangeTime: data,
+            });
+        }
     }
 
     handleOnChangeSelect = async (e) => {
@@ -88,13 +130,25 @@ class DoctorSchedule extends Component {
             let doctorId = this.props.doctorIdFromParent;
             let date = e.target.value;
             let res = await getScheduleDoctorByDate(doctorId, date);
-            console.log(res);
             if (res && res.data.errCode === 0) {
                 this.setState({
                     allAvailableTime: res.data.data ? res.data.data : [],
                 });
             }
         }
+        let data = this.props.allScheduleTime;
+        let allDays = this.getArrDays(this.props.language);
+
+        if (data && data.length > 0) {
+            data = data.map((item) => ({
+                ...item,
+                date: e.target.value,
+            }));
+        }
+        this.setState({
+            rangeTime: data,
+        });
+        this.handleCheckAvailableDay();
     };
 
     handleClickScheduleTime = (time) => {
@@ -102,8 +156,25 @@ class DoctorSchedule extends Component {
             isOpenModal: true,
             dataScheduleTimeModal: time,
         });
+        console.log(time);
     };
+    handleCheckAvailableDay = () => {
+        let rangeTime = this.state.rangeTime;
+        console.log(rangeTime);
+        let allAvailableTime = this.state.allAvailableTime;
+        for (let i = 0; i < rangeTime.length; i++) {
+            for (let x = 0; x < allAvailableTime.length; x++) {
+                if (rangeTime[i].keyMap === allAvailableTime[x].timeType) {
+                    rangeTime.splice(i, 1);
+                }
+            }
+        }
+        console.log(rangeTime);
 
+        this.setState({
+            rangeTime,
+        });
+    };
     handleCloseModal = () => {
         this.setState({
             isOpenModal: false,
@@ -111,8 +182,11 @@ class DoctorSchedule extends Component {
     };
 
     render() {
-        let { allDays, allAvailableTime, isOpenModal, dataScheduleTimeModal } = this.state;
+        let { allDays, allAvailableTime, isOpenModal, dataScheduleTimeModal, rangeTime } =
+            this.state;
         let { language } = this.props;
+        console.log(allAvailableTime, 123);
+        console.log(rangeTime, 1223);
         return (
             <>
                 <div className="doctor-schedule-container">
@@ -138,15 +212,14 @@ class DoctorSchedule extends Component {
                             </i>
                         </div>
                         <div className="time-content">
-                            {allAvailableTime && allAvailableTime.length > 0 ? (
+                            {rangeTime && rangeTime.length > 0 ? (
                                 <>
-                                    {' '}
                                     <div className="time-content-btns">
-                                        {allAvailableTime.map((item, i) => {
+                                        {rangeTime.map((item, i) => {
                                             let timeDisplay =
                                                 language === LANGUAGES.VI
-                                                    ? item.timeTypeData.valueVi
-                                                    : item.timeTypeData.valueEn;
+                                                    ? item.valueVi
+                                                    : item.valueEn;
                                             return (
                                                 <button
                                                     key={i}
@@ -184,6 +257,8 @@ class DoctorSchedule extends Component {
                     isOpenModal={isOpenModal}
                     closeBookingClose={this.handleCloseModal}
                     dataTime={dataScheduleTimeModal}
+                    rangeTime={rangeTime}
+                    handleCheckAvailableDay={this.handleCheckAvailableDay}
                 />
             </>
         );
@@ -192,13 +267,17 @@ class DoctorSchedule extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        allDoctors: state.admin.allDoctors,
         language: state.app.language,
+        allScheduleTime: state.admin.allScheduleTime,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         // changeLanguageAppRedux: (language) => dispatch(changeLanguageApp(language)),
+        fetchAllDoctors: () => dispatch(actions.fetchAllDoctors()),
+        fetchAllScheduleTime: () => dispatch(actions.fetchAllScheduleTime()),
     };
 };
 

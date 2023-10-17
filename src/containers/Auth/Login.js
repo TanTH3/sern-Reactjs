@@ -5,7 +5,7 @@ import { handleLoginApi } from '../../services/userService';
 
 import * as actions from '../../store/actions';
 import './Login.scss';
-import { FormattedMessage } from 'react-intl';
+// import { FormattedMessage } from 'react-intl';
 
 class Login extends Component {
     constructor(props) {
@@ -34,14 +34,12 @@ class Login extends Component {
         try {
             let data = await handleLoginApi(this.state.username, this.state.password);
             if (data && data.data.errCode !== 0) {
-                console.log(data);
                 this.setState({
                     errMessage: data.data.message,
                 });
             }
             if (data && data.data.errCode === 0) {
                 this.props.userLoginSuccessRedux(data.data.user);
-                console.log(data.data.user);
             }
         } catch (e) {
             if (e.response) {

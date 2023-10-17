@@ -7,6 +7,7 @@ import './DoctorInfoBooking.scss';
 import { getProfileDoctorById } from '../../../../services/userService';
 import { LANGUAGES } from '../../../../utils';
 import _ from 'lodash';
+import { Link } from 'react-router-dom';
 
 class DoctorInfoBooking extends Component {
     constructor(props) {
@@ -24,7 +25,11 @@ class DoctorInfoBooking extends Component {
     }
 
     async componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.props.language !== prevProps.language) {
+        if (this.props.doctorId !== prevProps.doctorId) {
+            let data = await this.getInfoDoctor(this.props.doctorId);
+            this.setState({
+                dataProfile: data,
+            });
         }
     }
 
@@ -32,7 +37,6 @@ class DoctorInfoBooking extends Component {
         let result = {};
         if (id) {
             let res = await getProfileDoctorById(id);
-            console.log(res);
             if (res && res.data.errCode === 0) {
                 result = res.data.data;
             }
@@ -43,10 +47,7 @@ class DoctorInfoBooking extends Component {
     renderTimeBooking = (dataTime) => {
         let { language } = this.props;
         if (dataTime && !_.isEmpty(dataTime)) {
-            let time =
-                language === LANGUAGES.VI
-                    ? dataTime.timeTypeData.valueVi
-                    : dataTime.timeTypeData.valueEn;
+            let time = language === LANGUAGES.VI ? dataTime.valueVi : dataTime.valueEn;
 
             let date =
                 language === LANGUAGES.VI
@@ -70,8 +71,8 @@ class DoctorInfoBooking extends Component {
 
     render() {
         let { dataProfile } = this.state;
-        let { language, isShowDescription, dataTime } = this.props;
-        console.log(dataTime);
+        let { language, isShowDescription, dataTime, isShowPrice, isShowLinkDetail, doctorId } =
+            this.props;
         let nameVi = '',
             nameEn = '';
         if (dataProfile && dataProfile.positionData) {
@@ -90,7 +91,9 @@ class DoctorInfoBooking extends Component {
                         }}
                     ></div>
                     <div className="content-right">
-                        <div className="up">{language === LANGUAGES.VI ? nameVi : nameEn}</div>
+                        <Link to={`/profile-doctor/${doctorId}`} className="up">
+                            {language === LANGUAGES.VI ? nameVi : nameEn}
+                        </Link>
                         <div className="down">
                             {isShowDescription === true ? (
                                 <>
@@ -106,28 +109,35 @@ class DoctorInfoBooking extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="price">
-                    <FormattedMessage id="patient.booking-modal.price" />
+                {isShowLinkDetail === true && (
+                    <div className="view-detail-doctor">
+                        <Link to={`/profile-doctor/${doctorId}`}>Xem thêm</Link>
+                    </div>
+                )}
+                {isShowPrice && (
+                    <div className="price">
+                        <FormattedMessage id="patient.booking-modal.price" />
 
-                    {dataProfile && dataProfile.Doctor_Info && language === LANGUAGES.VI && (
-                        <NumberFormat
-                            className="currency"
-                            value={dataProfile.Doctor_Info.priceTypeData.valueVi}
-                            displayType={'text'}
-                            thousandSeparator={true}
-                            suffix={'VNĐ'}
-                        />
-                    )}
-                    {dataProfile && dataProfile.Doctor_Info && language === LANGUAGES.EN && (
-                        <NumberFormat
-                            className="currency"
-                            value={dataProfile.Doctor_Info.priceTypeData.valueEn}
-                            displayType={'text'}
-                            thousandSeparator={true}
-                            suffix={'$'}
-                        />
-                    )}
-                </div>
+                        {dataProfile && dataProfile.Doctor_Info && language === LANGUAGES.VI && (
+                            <NumberFormat
+                                className="currency"
+                                value={dataProfile.Doctor_Info.priceTypeData.valueVi}
+                                displayType={'text'}
+                                thousandSeparator={true}
+                                suffix={'VNĐ'}
+                            />
+                        )}
+                        {dataProfile && dataProfile.Doctor_Info && language === LANGUAGES.EN && (
+                            <NumberFormat
+                                className="currency"
+                                value={dataProfile.Doctor_Info.priceTypeData.valueEn}
+                                displayType={'text'}
+                                thousandSeparator={true}
+                                suffix={'$'}
+                            />
+                        )}
+                    </div>
+                )}
             </div>
         );
     }

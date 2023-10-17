@@ -10,6 +10,7 @@ import {
     saveDetailDoctorService,
     getDetailDoctorByIdService,
     getAllSpecialty,
+    getAllClinic,
 } from '../../services/userService';
 import { toast } from 'react-toastify';
 
@@ -18,7 +19,6 @@ export const fetchGenderStart = () => {
         try {
             dispatch({ type: actionTypes.FETCH_GENDER_START });
             let res = await getAllCodeService('GENDER');
-            console.log(res);
             if (res.data && res.data.errCode === 0) {
                 dispatch(fetchGenderSuccess(res.data.data));
             } else {
@@ -118,7 +118,6 @@ export const fetchAllUsersStart = () => {
     return async (dispatch, getState) => {
         try {
             let res = await getAllUsers('ALL');
-            console.log(res);
             if (res.data && res.data.errCode === 0) {
                 dispatch(fetchAllUsersSuccess(res.data.user));
             } else {
@@ -171,7 +170,6 @@ export const editAUser = (userId) => {
     return async (dispatch, getState) => {
         try {
             let res = await editUserService(userId);
-            console.log(res);
             if (res.data && res.data.errCode === 0) {
                 toast.success('Update the user succeed!');
                 dispatch(editUserSuccess());
@@ -200,7 +198,6 @@ export const fetchTopDoctor = () => {
     return async (dispatch, getState) => {
         try {
             let res = await getTopDoctorHomeService('');
-            console.log(res);
             if (res && res.data.errCode === 0) {
                 dispatch({
                     type: actionTypes.FETCH_TOP_DOCTORS_SUCCESS,
@@ -224,7 +221,6 @@ export const fetchAllDoctors = () => {
     return async (dispatch, getState) => {
         try {
             let res = await getAllDoctorsService();
-            console.log(res);
             if (res && res.data.errCode === 0) {
                 dispatch({
                     type: actionTypes.FETCH_ALL_DOCTORS_SUCCESS,
@@ -245,11 +241,9 @@ export const fetchAllDoctors = () => {
 };
 
 export const saveDetailDoctor = (data) => {
-    console.log(data);
     return async (dispatch, getState) => {
         try {
             let res = await saveDetailDoctorService(data);
-            console.log(res);
             if (res && res.data.errCode === 0) {
                 toast.success('Save succeed!');
                 dispatch({
@@ -272,11 +266,9 @@ export const saveDetailDoctor = (data) => {
 };
 
 export const getDetailDoctorById = (Id) => {
-    console.log(Id);
     return async (dispatch, getState) => {
         try {
             let res = await getDetailDoctorByIdService(Id);
-            console.log(res);
             if (res && res.data.errCode === 0) {
                 dispatch({
                     type: actionTypes.GET_DETAIL_DOCTOR_BY_ID_SUCCESS,
@@ -300,7 +292,6 @@ export const fetchAllScheduleTime = () => {
     return async (dispatch, getState) => {
         try {
             let res = await getAllCodeService('TIME');
-            console.log(res);
             if (res && res.data.errCode === 0) {
                 dispatch({
                     type: actionTypes.FETCH_ALL_CODE_SCHEDULE_TIME_SUCCESS,
@@ -329,7 +320,7 @@ export const getAllRequiredDoctorInfo = () => {
             let resPayment = await getAllCodeService('PAYMENT');
             let resProvince = await getAllCodeService('PROVINCE');
             let resSpecialty = await getAllSpecialty();
-            console.log(resPayment, resPrice, resProvince);
+            let resClinic = await getAllClinic();
             if (
                 resPrice &&
                 resPrice.data.errCode === 0 &&
@@ -338,13 +329,16 @@ export const getAllRequiredDoctorInfo = () => {
                 resProvince &&
                 resProvince.data.errCode === 0 &&
                 resSpecialty &&
-                resSpecialty.data.errCode === 0
+                resSpecialty.data.errCode === 0 &&
+                resClinic &&
+                resClinic.data.errCode === 0
             ) {
                 let data = {
                     resPrice: resPrice.data.data,
                     resPayment: resPayment.data.data,
                     resProvince: resProvince.data.data,
                     resSpecialty: resSpecialty.data.data,
+                    resClinic: resClinic.data.data,
                 };
                 dispatch(fetchRequiredDoctorInfoSuccess(data));
             } else {

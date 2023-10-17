@@ -19,6 +19,11 @@
 
             .up {
                 font-weight: 600;
+                color: black;
+
+                &:hover {
+                    text-decoration: none;
+                }
             }
 
             .down {

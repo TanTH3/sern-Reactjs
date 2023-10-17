@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import { getAllUsers, createNewUserService, deleteUserService, editUserService } from '../../services/userService';
+import {
+    getAllUsers,
+    createNewUserService,
+    deleteUserService,
+    editUserService,
+} from '../../services/userService';
 import './UserManage.scss';
 import ModalUser from './ModalUser';
 import { emitter } from '../../utils/emitter';
@@ -24,7 +29,6 @@ class UserManage extends Component {
     getAllUserFromReact = async () => {
         let response = await getAllUsers('ALL');
         if (response && response.data.errCode === 0) {
-            console.log('get user from nodejs:', response);
             this.setState({
                 userData: response.data.user,
             });
@@ -53,9 +57,7 @@ class UserManage extends Component {
                 this.toggleUser();
                 emitter.emit('EVENT_CLEAR_MODAL_DATA');
             }
-            console.log('response', response.data);
         } catch (e) {}
-        console.log(data);
     };
 
     editUser = async (data) => {
@@ -68,11 +70,9 @@ class UserManage extends Component {
             } else {
                 alert(res.data.errMessage);
             }
-            console.log(res);
         } catch (e) {}
     };
     handleDeleteUser = async (user) => {
-        console.log(user);
         try {
             let res = await deleteUserService(user.id);
             if (res && res.data.errCode === 0) {
@@ -80,11 +80,9 @@ class UserManage extends Component {
             } else {
                 alert(res.data.errMessage);
             }
-            console.log(res);
         } catch (e) {}
     };
     handleEditUser = (user) => {
-        console.log(user);
         this.setState({
             isOpen: true,
             isCreate: false,
@@ -105,7 +103,10 @@ class UserManage extends Component {
                 />
                 <div className="title text-center">Manage </div>
                 <div className="mx-1">
-                    <button className="btn btn-primary px-3" onClick={() => this.handleAddNewUser()}>
+                    <button
+                        className="btn btn-primary px-3"
+                        onClick={() => this.handleAddNewUser()}
+                    >
                         Add new users
                     </button>
                 </div>
@@ -128,8 +129,12 @@ class UserManage extends Component {
                                             <td>{user.lastName}</td>
                                             <td>{user.address}</td>
                                             <td>
-                                                <button onClick={() => this.handleEditUser(user)}>Edit</button>
-                                                <button onClick={() => this.handleDeleteUser(user)}>Delete</button>
+                                                <button onClick={() => this.handleEditUser(user)}>
+                                                    Edit
+                                                </button>
+                                                <button onClick={() => this.handleDeleteUser(user)}>
+                                                    Delete
+                                                </button>
                                             </td>
                                         </tr>
                                     );

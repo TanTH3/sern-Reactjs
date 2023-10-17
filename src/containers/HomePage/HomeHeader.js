@@ -17,13 +17,11 @@ class HomeHeader extends Component {
     };
     render() {
         let language = this.props.language;
-        console.log(this.props);
         return (
             <>
                 <div className="home-header-container">
                     <div className="home-header-content">
                         <div className="left-content">
-                            <i className="fas fa-bars"></i>
                             <div className="header-logo" onClick={() => this.returnHome()}></div>
                         </div>
                         <div className="center-content">
