@@ -63,7 +63,9 @@ class ManagePatient extends Component {
             email: item.patientData.email,
             timeType: item.timeType,
             patientName: item.patientData.firstName,
+            date: item.date,
         };
+        console.log(item);
         this.setState({
             isOpenModal: true,
             dataModal: data,
@@ -89,6 +91,7 @@ class ManagePatient extends Component {
             doctorId: dataModal.doctorId,
             patientId: dataModal.patientId,
             timeType: dataModal.timeType,
+            date: dataModal.date,
             language: this.props.language,
             patientName: dataModal.patientName,
         });

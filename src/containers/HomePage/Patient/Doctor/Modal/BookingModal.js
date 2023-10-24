@@ -102,7 +102,8 @@ class BookingModal extends Component {
         this.props.handleCheckAvailableDay();
         let date = new Date(this.state.birthday).getTime();
         let timeString = this.buildTimeBooking(this.props.dataTime);
-        let doctorName = this.buildDoctorName(this.props.dataTime);
+        let doctorName = await this.buildDoctorName(this.props.dataTime);
+        console.log(doctorName);
         let res = await postPatientBookAppointment({
             fullName: this.state.fullName,
             phoneNumber: this.state.phoneNumber,
@@ -156,7 +157,6 @@ class BookingModal extends Component {
 
     buildDoctorName = async (dataTime) => {
         let dataDoctor = await getDetailDoctorByIdService(dataTime.doctorId);
-
         let { language } = this.props;
         if (dataTime && !_.isEmpty(dataTime)) {
             let name =
@@ -164,6 +164,7 @@ class BookingModal extends Component {
                     ? `${dataDoctor.data.data.lastName} ${dataDoctor.data.data.firstName}`
                     : `${dataDoctor.data.data.firstName} ${dataDoctor.data.data.lastName}`;
 
+            console.log(name);
             return name;
         }
         return '';
