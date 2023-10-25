@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import moment from 'moment';
-import localization from 'moment/locale/vi';
-import { FormattedMessage } from 'react-intl';
-import NumberFormat from 'react-number-format';
 import HomeHeader from '../../HomeHeader';
 import { LANGUAGES } from '../../../../utils';
 import * as actions from '../../../../store/actions';
@@ -90,8 +86,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         loadTopDoctors: () => dispatch(actions.fetchAllDoctors()),
-
-        // changeLanguageAppRedux: (language) => dispatch(changeLanguageApp(language)),
     };
 };
 

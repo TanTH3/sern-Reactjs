@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { FormattedMessage } from 'react-intl';
 import Slider from 'react-slick';
 
 class HandBook extends Component {
@@ -54,9 +53,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        // changeLanguageAppRedux: (language) => dispatch(changeLanguageApp(language)),
-    };
+    return {};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HandBook);

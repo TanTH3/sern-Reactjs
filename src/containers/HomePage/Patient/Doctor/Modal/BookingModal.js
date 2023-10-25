@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import moment, { lang } from 'moment';
+import moment from 'moment';
 import { FormattedMessage } from 'react-intl';
 import { Modal } from 'reactstrap';
 import './BookingModal.scss';

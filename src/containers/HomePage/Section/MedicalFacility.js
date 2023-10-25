@@ -81,9 +81,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        // changeLanguageAppRedux: (language) => dispatch(changeLanguageApp(language)),
-    };
+    return {};
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MedicalFacility));

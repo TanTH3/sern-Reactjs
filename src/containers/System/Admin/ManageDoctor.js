@@ -23,15 +23,12 @@ class ManageDoctor extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            //save to markdown table
             contentMarkdown: '',
             contentHTML: '',
             selectedOption: '',
             description: '',
             listDoctor: [],
             hasOldData: false,
-
-            //save to doctor_info_table
 
             listPrice: [],
             listPayment: [],
@@ -300,8 +297,6 @@ class ManageDoctor extends Component {
 
     render() {
         let { hasOldData } = this.state;
-        console.log(this.props.allRequiredDoctorInfo);
-        console.log(this.props.allDoctors);
 
         return (
             <div className="manage-doctor-container">

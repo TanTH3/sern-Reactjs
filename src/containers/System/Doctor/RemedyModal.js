@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import moment from 'moment';
-import localization from 'moment/locale/vi';
-import { FormattedMessage } from 'react-intl';
-import NumberFormat from 'react-number-format';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal, ModalBody, ModalFooter } from 'reactstrap';
 import { CommonUtils } from '../../../utils';
 
 class RemedyModal extends Component {
@@ -53,8 +49,7 @@ class RemedyModal extends Component {
         this.props.sendRemedy(this.state);
     };
     render() {
-        let { isOpenModal, closeRemedyModal, dataModal, sendRemedy } = this.props;
-        let { language } = this.props;
+        let { isOpenModal, closeRemedyModal } = this.props;
         return (
             <Modal isOpen={isOpenModal} className="booking-modal-container" size="md" centered>
                 <div className="modal-header">
@@ -109,9 +104,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        // changeLanguageAppRedux: (language) => dispatch(changeLanguageApp(language)),
-    };
+    return {};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(RemedyModal);

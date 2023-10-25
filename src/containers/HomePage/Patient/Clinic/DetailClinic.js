@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import moment from 'moment';
-// import localization from 'moment/locale/vi';
-// import { FormattedMessage } from 'react-intl';
-// import NumberFormat from 'react-number-format';
 import HomeHeader from '../../HomeHeader';
 import './DetailClinic.scss';
 import DoctorSchedule from '../Doctor/DoctorSchedule';
@@ -11,7 +7,6 @@ import DoctorExtraInfo from '../Doctor/DoctorExtraInfo';
 import DoctorInfoBooking from '../Doctor/DoctorInfoBooking';
 import { getDetailClinicById, getAllCodeService } from '../../../../services/userService';
 import _ from 'lodash';
-import { LANGUAGES } from '../../../../utils';
 
 class DetailClinic extends Component {
     constructor(props) {
@@ -82,7 +77,6 @@ class DetailClinic extends Component {
 
     render() {
         let { arrDoctorId, dataDetailSpecialty, listProvince } = this.state;
-        let { language } = this.props;
 
         return (
             <div className="detail-specialty-container">
@@ -136,9 +130,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        // changeLanguageAppRedux: (language) => dispatch(changeLanguageApp(language)),
-    };
+    return {};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DetailClinic);

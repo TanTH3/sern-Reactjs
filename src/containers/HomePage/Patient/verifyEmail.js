@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import './verifyEmail.scss';
 import HomeHeader from '../HomeHeader';
 import { postVerifyBookAppointment } from '../../../services/userService';
@@ -37,14 +36,10 @@ class verifyEmail extends Component {
         }
     }
 
-    async componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.props.language !== prevProps.language) {
-        }
-    }
+    async componentDidUpdate(prevProps, prevState, snapshot) {}
 
     render() {
         let { statusVerify, errCode } = this.state;
-        let { language } = this.props;
         return (
             <>
                 <HomeHeader />
@@ -75,9 +70,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        // changeLanguageAppRedux: (language) => dispatch(changeLanguageApp(language)),
-    };
+    return {};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(verifyEmail);

@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './ManagePatient.scss';
-import { FormattedMessage } from 'react-intl';
-import Select from 'react-select';
-import * as actions from '../../../store/actions';
-import { CRUD_ACTIONS, LANGUAGES, dateFormat } from '../../../utils';
 import DatePicker from '../../../components/Input/DatePicker';
 import moment from 'moment/moment';
 import { toast } from 'react-toastify';
@@ -112,7 +108,6 @@ class ManagePatient extends Component {
 
     render() {
         let { dataPatient, isOpenModal, dataModal } = this.state;
-        let { language } = this.props;
         return (
             <>
                 <LoadingOverlay active={this.state.isShowLoading} spinner text="Loading">

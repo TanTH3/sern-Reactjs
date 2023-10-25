@@ -6,7 +6,6 @@ import { getScheduleDoctorByDate } from '../../../../services/userService';
 import { FormattedMessage } from 'react-intl';
 import { LANGUAGES } from '../../../../utils';
 import BookingModal from './Modal/BookingModal';
-import { isEqual, range } from 'lodash';
 import * as actions from '../../../../store/actions';
 
 class DoctorSchedule extends Component {
@@ -137,7 +136,6 @@ class DoctorSchedule extends Component {
             }
         }
         let data = this.props.allScheduleTime;
-        let allDays = this.getArrDays(this.props.language);
 
         if (data && data.length > 0) {
             data = data.map((item) => ({
@@ -156,11 +154,9 @@ class DoctorSchedule extends Component {
             isOpenModal: true,
             dataScheduleTimeModal: time,
         });
-        console.log(time);
     };
     handleCheckAvailableDay = () => {
         let rangeTime = this.state.rangeTime;
-        console.log(rangeTime);
         let allAvailableTime = this.state.allAvailableTime;
         for (let i = 0; i < rangeTime.length; i++) {
             for (let x = 0; x < allAvailableTime.length; x++) {
@@ -169,7 +165,6 @@ class DoctorSchedule extends Component {
                 }
             }
         }
-        console.log(rangeTime);
 
         this.setState({
             rangeTime,
@@ -182,11 +177,8 @@ class DoctorSchedule extends Component {
     };
 
     render() {
-        let { allDays, allAvailableTime, isOpenModal, dataScheduleTimeModal, rangeTime } =
-            this.state;
+        let { allDays, isOpenModal, dataScheduleTimeModal, rangeTime } = this.state;
         let { language } = this.props;
-        console.log(allAvailableTime, 123);
-        console.log(rangeTime, 1223);
         return (
             <>
                 <div className="doctor-schedule-container">
@@ -275,7 +267,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        // changeLanguageAppRedux: (language) => dispatch(changeLanguageApp(language)),
         fetchAllDoctors: () => dispatch(actions.fetchAllDoctors()),
         fetchAllScheduleTime: () => dispatch(actions.fetchAllScheduleTime()),
     };

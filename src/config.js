@@ -1,6 +1,6 @@
 export default {
     api: {
-        API_BASE_URL: 'http://localhost:2001/',
+        API_BASE_URL: 'https://tanth-bookingcare.onrender.com/',
         ROUTER_BASE_NAME: null,
     },
     app: {

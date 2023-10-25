@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import moment from 'moment';
-// import localization from 'moment/locale/vi';
-// import { FormattedMessage } from 'react-intl';
-// import NumberFormat from 'react-number-format';
 import HomeHeader from '../../HomeHeader';
 import './DetailSpecialty.scss';
 import DoctorSchedule from '../Doctor/DoctorSchedule';
@@ -63,10 +59,7 @@ class DetailSpecialty extends Component {
         }
     }
 
-    async componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.props.language !== prevProps.language) {
-        }
-    }
+    async componentDidUpdate(prevProps, prevState, snapshot) {}
 
     handleOnChangeSelect = async (e) => {
         if (this.props.match && this.props.match.params && this.props.match.params.id) {
@@ -172,9 +165,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        // changeLanguageAppRedux: (language) => dispatch(changeLanguageApp(language)),
-    };
+    return {};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DetailSpecialty);

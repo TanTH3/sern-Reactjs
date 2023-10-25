@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import { emitter } from '../../utils/emitter';
@@ -64,7 +63,12 @@ class ModalUser extends Component {
     };
     render() {
         return (
-            <Modal isOpen={this.props.isOpen} toggle={() => this.toggle()} className={'abcClassName'} size="lg">
+            <Modal
+                isOpen={this.props.isOpen}
+                toggle={() => this.toggle()}
+                className={'abcClassName'}
+                size="lg"
+            >
                 <ModalHeader toggle={() => this.toggle()}></ModalHeader>
                 <ModalBody>
                     <div className="container">
@@ -89,7 +93,9 @@ class ModalUser extends Component {
                                             className="form-control"
                                             name="password"
                                             placeholder="Password"
-                                            onChange={(e) => this.handleOnChangeInput(e, 'password')}
+                                            onChange={(e) =>
+                                                this.handleOnChangeInput(e, 'password')
+                                            }
                                             value={this.state.password}
                                         />
                                     </div>
@@ -134,7 +140,11 @@ class ModalUser extends Component {
                                 <div className="form-row">
                                     <div className="form-group col-4">
                                         <label htmlFor="inputCity">Phone number</label>
-                                        <input type="text" className="form-control" name="phoneNumber" />
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            name="phoneNumber"
+                                        />
                                     </div>
                                     <div className="form-group col-md-4">
                                         <label htmlFor="inputState">Gender</label>

@@ -13,9 +13,9 @@ class About extends Component {
                             height="400px"
                             src="https://www.youtube.com/embed/FyDQljKtWnI?si=mwExZCIQ5oGt2ez7"
                             title="YouTube video player"
-                            frameborder="0"
+                            frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowfullscreen
+                            allowFullScreen
                         ></iframe>
                     </div>
                     <div className="content-right">
@@ -60,9 +60,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        // changeLanguageAppRedux: (language) => dispatch(changeLanguageApp(language)),
-    };
+    return {};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(About);
