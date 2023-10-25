@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/sern-Reactjs/static/css/main.527bda47.chunk.css",
+    "main.js": "/sern-Reactjs/static/js/main.cda5d4b0.chunk.js",
+    "main.js.map": "/sern-Reactjs/static/js/main.cda5d4b0.chunk.js.map",
+    "runtime-main.js": "/sern-Reactjs/static/js/runtime-main.52daeee3.js",
+    "runtime-main.js.map": "/sern-Reactjs/static/js/runtime-main.52daeee3.js.map",
+    "static/css/2.62386655.chunk.css": "/sern-Reactjs/static/css/2.62386655.chunk.css",
+    "static/js/2.9d7f2ecc.chunk.js": "/sern-Reactjs/static/js/2.9d7f2ecc.chunk.js",
+    "static/js/2.9d7f2ecc.chunk.js.map": "/sern-Reactjs/static/js/2.9d7f2ecc.chunk.js.map",
+    "index.html": "/sern-Reactjs/index.html",
+    "static/css/2.62386655.chunk.css.map": "/sern-Reactjs/static/css/2.62386655.chunk.css.map",
+    "static/css/main.527bda47.chunk.css.map": "/sern-Reactjs/static/css/main.527bda47.chunk.css.map",
+    "static/js/2.9d7f2ecc.chunk.js.LICENSE.txt": "/sern-Reactjs/static/js/2.9d7f2ecc.chunk.js.LICENSE.txt",
+    "static/media/HomeHeader.scss": "/sern-Reactjs/static/media/logo.2e2d78c9.svg",
+    "static/media/styles.scss": "/sern-Reactjs/static/media/fa-solid-900.d279d01b.svg",
+    "static/media/HomePage.scss": "/sern-Reactjs/static/media/mo-trong-mau-phu-nu.37554e89.png",
+    "static/media/slick-theme.css": "/sern-Reactjs/static/media/slick.c94f7671.ttf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.52daeee3.js",
+    "static/css/2.62386655.chunk.css",
+    "static/js/2.9d7f2ecc.chunk.js",
+    "static/css/main.527bda47.chunk.css",
+    "static/js/main.cda5d4b0.chunk.js"
+  ]
+}
