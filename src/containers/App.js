@@ -20,6 +20,28 @@ import AllDoctor from './HomePage/Patient/Doctor/AllDoctor';
 import AllClinic from './HomePage/Patient/Clinic/AllClinic';
 import AllSpecialty from './HomePage/Patient/Specialty/AllSpecialty';
 
+// Import the functions you need from the SDKs you need
+import { initializeApp } from 'firebase/app';
+import { getAnalytics } from 'firebase/analytics';
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+    apiKey: 'AIzaSyCRxi99ewvJXJ4P0UMR8zkXXahxLIX3vOI',
+    authDomain: 'tanth-bookingcare.firebaseapp.com',
+    projectId: 'tanth-bookingcare',
+    storageBucket: 'tanth-bookingcare.appspot.com',
+    messagingSenderId: '394018197952',
+    appId: '1:394018197952:web:e8e0806c6fbd455d36f825',
+    measurementId: 'G-5JCRBTDVNL',
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
 class App extends Component {
     handlePersistorState = () => {
         const { persistor } = this.props;

@@ -234,9 +234,6 @@
                         border-radius: 50%;
                         background-size: cover;
                     }
-                    &.section-handbook {
-                        background-image: url('../../assets/Handbook/mo-trong-mau-phu-nu.png');
-                    }
                 }
             }
         }
@@ -244,9 +241,6 @@
     .section-about {
         .section-about-content {
             flex-direction: column;
-            .content-left {
-                // width: 100%;
-            }
         }
     }
 }
